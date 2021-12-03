@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { HashRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import Home from "./page/Home";
+import NewCategory from "./page/NewCategory";
+import Firebase from "./provider/firebase";
+import Product from "./page/Product";
+import NewProduct from "./page/NewProduct";
+import Setting from "./page/Setting";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Firebase>
+      <div className="">
+        <Router>
+          <nav
+            className="navbar navbar-dark
+				 bg-success"
+          >
+            <div className="container">
+              <div className="d-flex ">
+                <div className="nav-item">
+                  <NavLink
+                    className="nav-link text-white"
+                    aria-current="page"
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
+                </div>
+                <div className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    aria-current="page"
+                    to="/products"
+                  >
+                    Products
+                  </NavLink>
+                </div>
+                <div className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    aria-current="page"
+                    to="/setting"
+                  >
+                    Setting
+                  </NavLink>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/new-category" element={<NewCategory />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/new-product" element={<NewProduct />} />
+            <Route path="/setting" element={<Setting />} />
+          </Routes>
+        </Router>
+      </div>
+    </Firebase>
   );
 }
 
